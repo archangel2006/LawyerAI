@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lawyer.AI Chat</title>
+  <style>
+    /* ---------- Global Styles ---------- */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f4f4f4;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+    /* ---------- NAVBAR (Top Ribbon) ---------- */
+    .navbar {
+        position:fixed;
+        top: 0; 
+        left: 0; 
+        width: 100%;
+        z-index: 1000;
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #cb9c00;
+        padding: 20px 20px 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1)
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    .logo{
+        display: flex;
+        align-items: center;
+        font-size: 30px;
+        margin-right:25px;
+        font-weight: bold;
+        font-family:'Times New Roman';
+    }
+    .logo img{height:60px;
+            margin-right:30px;
+            border-radius:8px;
+    }
+    /* ---------- LANGUAGE DROPDOWN ---------- */
+    .lang-dropdown {
+      position: fixed;
+      margin-left: 1100px;
+      margin-right: 10px;
+    }
+    .lang-btn {
+      background: whitesmoke;
+      color: #007bff;
+      padding: 5px 10px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+    .lang-options {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: rgb(223, 212, 200);
+      min-width: 120px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+    .lang-options div {
+      padding: 10px;
+      cursor: pointer;
+    }
+    .lang-options div:hover {
+      background: #007bff;
+      color: white;
+    }
+    .lang-dropdown:hover .lang-options {
+      display: block;
+    }
+    /* ---------- SIDEBAR (Dashboard) ---------- */
+    .sidebar {
+      width: 250px;
+      background: #cb9c00;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+      position: fixed;
+      top: 100px; /* below navbar */
+      bottom: 0;
+      left: -260px;
+      transition: 0.3s;
+      padding: 20px;
+      overflow-y: auto;
+      z-index: 999;
+    }
+    .sidebar.show {
+      left: 0;
+    }
+    .sidebar button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      background: whitesmoke;
+      color: black;
+      font-size: 16px;
+      cursor: pointer;
+      margin-bottom: 10px;
+      text-align: left;
+      border-radius: 5px;
+    }
+    .sidebar button:hover {
+      background: #0056b3;
+    }
+    .sidebar .clear-history {
+      background: whitesmoke;
+    }
+    .chat-history {
+      margin-top: 20px;
+    }
+    .chat-history div {
+      padding: 10px;
+      background: #f1f1f1;
+      margin: 5px 0;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .chat-history div:hover {
+      background: #ddd;
+    }
+    /* ---------- CHAT CONTAINER ---------- */
+    .chat-container {
+      margin-top: 120px;
+      margin-left: 80px;
+      margin-right: 60px;
+      margin-bottom:20px;
+      width: 200px;
+      background: aliceblue;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      flex-grow: 1;
+    }
+    .chat-box {
+      padding: 10px;
+      height: calc(100vh - 60px - 70px);
+      overflow-y: auto;
+      border-bottom: 1px solid #ddd;
+    }
+    .message {
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      max-width: 75%;
+    }
+    .user-message {
+      background: #bbe8e1;
+      color: black;
+      align-self: flex-end;
+    }
+    .ai-message {
+      background: #c6c5c4;
+      color: black;
+      align-self: flex-start;
+    }
+    /* ---------- INPUT CONTAINER ---------- */
+    .input-container {
+      display: flex;
+      padding: 10px;
+      background: #f4e8c0;
+    }
+    .input-container input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      outline: none;
+    }
+    .input-container button {
+      margin-left: 10px;
+      padding: 10px;
+      background: #5393d8;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    #mic-btn {
+      background: #a5e7b5;
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="nav-left" onclick="toggleSidebar()">
+        <div class="logo">
+            <img src="https://i.pinimg.com/474x/8e/67/c1/8e67c148f79f24c1ffa129e791730a24.jpg" alt="LawyerAI">
+            <span>LawyerAI</span>
+        </div>
+    </div>
+    <!-- LANGUAGE DROPDOWN -->
+    <div class="lang-dropdown">
+      <button class="lang-btn">🌍 Language ▼ </button>
+      <div class="lang-options">
+        <div onclick="changeLanguage('en')">English</div>
+        <div onclick="changeLanguage('hi')">हिन्दी</div>
+        <div onclick="changeLanguage('mr')">Marathi</div>
+        <div onclick="changeLanguage('ta')">Tamil</div>
+        <div onclick="changeLanguage('bn')">Bengali</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR / DASHBOARD -->
+  <div class="sidebar" id="sidebar">
+    <button onclick="goHome()">🏠 Home</button>
+    <button onclick="newChat()">➕ New Chat</button>
+    <button onclick="showChatHistory()">📜 Chat History</button>
+    <button class="clear-history" onclick="clearChatHistory()">🗑️ Clear History</button>
+    <div class="chat-history" id="chatHistoryList"></div>
+  </div>
+
+  <!-- CHAT INTERFACE -->
+  <div class="chat-container">
+    <div class="chat-box" id="chat-box">
+      <div class="message ai-message" id="initialGreeting"></div>
+    </div>
+    <div class="input-container">
+      <input type="text" id="user-input" placeholder="Type your question..." />
+      <button onclick="sendMessage()">Send</button>
+      <button id="mic-btn" onclick="startListening()">🎤</button>
+    </div>
+  </div>
+
+  <script>
+    // ---------- Global Variables ----------
+    let selectedLanguage = 'en';
+    let chatHistory = []; // stores past chat sessions; each session is an array of message objects
+    let currentChat = []; // current session messages
+
+    // Load chat history from localStorage if available
+    function loadChatHistory() {
+      const storedHistory = localStorage.getItem("chatHistory");
+      if (storedHistory) {
+        chatHistory = JSON.parse(storedHistory);
+      }
+    }
+    loadChatHistory();
+
+    // Save chat history to localStorage
+    function saveChatHistory() {
+      localStorage.setItem("chatHistory", JSON.stringify(chatHistory));
+    }
+
+    // ---------- Set Initial Greeting Based on Language ----------
+    function setInitialGreeting() {
+      const greetingElem = document.getElementById("initialGreeting");
+      let greeting = "";
+      if (selectedLanguage === "hi") {
+        greeting = "नमस्कार! आज मैं आपका वकील हूँ! मैं आपकी क्या सहायता कर सकता हूँ?";
+      } else if (selectedLanguage === "mr") {
+        greeting = "नमस्कार! आज मी तुमचा वकील आहे! मी तुम्हाला कशी मदत करू शकतो?";
+      } else if (selectedLanguage === "ta") {
+        greeting = "வணக்கம்! இன்று நான் உங்கள் வழக்கறிஞராக இருப்பேன்! நான் உங்களுக்கு எப்படி உதவ முடியும்?";
+      } else if (selectedLanguage === "bn") {
+        greeting = "নমস্কার! আমি আজ আপনার উকিল! আমি কিভাবে আপনাকে সাহায্য করতে পারি?";
+      } else {
+        greeting = "Hello There! I will be your lawyer for today! How can I assist you ?";
+      }
+      document.getElementById("chat-box").innerHTML = `<div class="message ai-message">${greeting}</div>`;
+    }
+    setInitialGreeting();
+
+    // ---------- Sidebar (Dashboard) Functions ----------
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("show");
+    }
+
+    function goHome() {
+      if (currentChat.length > 0) {
+        chatHistory.push([...currentChat]);
+        saveChatHistory();
+        currentChat = [];
+      }
+      setInitialGreeting();
+      toggleSidebar();
+      // Redirect to home.html
+      window.location.href = "home.html";
+    }
+
+    function newChat() {
+      if (currentChat.length > 0) {
+        chatHistory.push([...currentChat]);
+        saveChatHistory();
+      }
+      currentChat = [];
+      setInitialGreeting();
+      toggleSidebar();
+    }
+
+    function showChatHistory() {
+      const chatHistoryList = document.getElementById("chatHistoryList");
+      chatHistoryList.innerHTML = "";
+      if (chatHistory.length === 0) {
+        chatHistoryList.textContent = "No previous chats.";
+      } else {
+        chatHistory.forEach((chat, index) => {
+          const chatDiv = document.createElement("div");
+          chatDiv.textContent = "Chat " + (index + 1);
+          chatDiv.onclick = function () {
+            loadChat(index);
+          };
+          chatHistoryList.appendChild(chatDiv);
+        });
+      }
+    }
+
+    function loadChat(index) {
+      currentChat = chatHistory[index];
+      const chatBox = document.getElementById("chat-box");
+      chatBox.innerHTML = "";
+      currentChat.forEach((msg) => {
+        const msgDiv = document.createElement("div");
+        msgDiv.className = "message " + (msg.sender === "user" ? "user-message" : "ai-message");
+        msgDiv.textContent = msg.text;
+        chatBox.appendChild(msgDiv);
+      });
+      toggleSidebar();
+    }
+
+    function clearChatHistory() {
+      chatHistory = [];
+      saveChatHistory();
+      document.getElementById("chatHistoryList").innerHTML = "No previous chats.";
+    }
+
+    // ---------- Language Change Function ----------
+    function changeLanguage(lang) {
+      selectedLanguage = lang;
+      currentChat = [];
+      setInitialGreeting();
+    }
+
+    // ---------- Chat Functions ----------
+    function sendMessage() {
+      const inputField = document.getElementById("user-input");
+      const chatBox = document.getElementById("chat-box");
+      const userText = inputField.value.trim();
+      if (!userText) return;
+      
+      // Append user message to chat box and update current chat
+      const userMessageDiv = document.createElement("div");
+      userMessageDiv.className = "message user-message";
+      userMessageDiv.textContent = userText;
+      chatBox.appendChild(userMessageDiv);
+      currentChat.push({ sender: "user", text: userText });
+      inputField.value = "";
+      chatBox.scrollTop = chatBox.scrollHeight;
+      
+      // Prepare payload for the chatbot backend
+      const payload = {
+        message: userText,
+        language: selectedLanguage,
+      };
+
+      // Send message to chatbot.py backend
+      fetch("/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          // Combine AI explanation with related legal sections if desired
+          const aiResponse = data.ai_explanation || "(AI Response)";
+          const related = data.related_sections ? "\n\nRelated Legal Sections:\n" + data.related_sections.join("\n") : "";
+          const finalResponse = aiResponse + related;
+          
+          const aiMessageDiv = document.createElement("div");
+          aiMessageDiv.className = "message ai-message";
+          aiMessageDiv.textContent = finalResponse;
+          chatBox.appendChild(aiMessageDiv);
+          currentChat.push({ sender: "ai", text: finalResponse });
+          chatBox.scrollTop = chatBox.scrollHeight;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+
+    // ---------- Voice-to-Text (Speech Recognition) ----------
+    function startListening() {
+      if (!("webkitSpeechRecognition" in window)) {
+        alert("Speech Recognition is not supported in your browser. Please use Google Chrome.");
+        return;
+      }
+      const recognition = new webkitSpeechRecognition();
+      // Set language mapping
+      const languageMap = {
+        en: "en-IN",
+        hi: "hi-IN",
+        mr: "mr-IN",
+        ta: "ta-IN",
+        bn: "bn-BD"
+      };
+      recognition.lang = languageMap[selectedLanguage] || "en-IN";
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      recognition.onresult = function (event) {
+        document.getElementById("user-input").value = event.results[0][0].transcript;
+      };
+
+      recognition.onerror = function (event) {
+        console.error("Speech recognition error", event);
+        alert("Speech recognition error: " + event.error);
+      };
+
+      recognition.start();
+    }
+  </script>
+</body>
+</html>

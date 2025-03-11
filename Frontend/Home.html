@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lawyer.AI Homepage</title>
+    <style>
+        h2{font-family:'Times New Roman', Times, serif;
+            font-size:40px;
+            font-weight: bold;}
+
+        body{padding-top: 60px;}
+
+        
+        nav{
+            position:fixed;
+            top: 0; 
+            left: 0; 
+            width: 100%;
+            z-index: 1000;
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #cb9c00;
+            padding: 20px 20px 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1)
+        }
+
+        .logo{
+            display: flex;
+            align-items: center;
+            font-size: 30px;
+            margin-right:25px;
+            font-weight: bold;
+            font-family:'Times New Roman';
+        }
+        .logo img{height:60px;
+            margin-right:30px;
+            border-radius:8px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end; /* ✅ Ensures links are aligned to the right */
+            align-items: center; /* ✅ Ensures vertical centering */
+            margin-right: 20px; /* Optional: Adds spacing from the right edge */
+        }
+        .nav-links li{
+            display:inline;
+        }
+        .nav-links a{
+            text-decoration:none;
+            color:aliceblue;
+            font-weight: thin;
+        }
+        .nav-links a:hover {
+            color: #4138ec;
+        }
+
+        .page-container{
+            display:flex;
+            align-items:center;
+            justify-content: space-between;
+            gap:15px;
+            padding:20px;
+            align-items: flex-start;
+        }
+        
+        .tagline{
+            font-family:'Times New Roman';
+            text-align: left;
+            font-size: 30px;
+            color:black
+        }
+        .chat-button{
+            text-align: right;
+            display:inline-block;
+            padding: 12px 20px;
+            background-color:#cb9c00;
+            color: aliceblue;
+            text-decoration:none;
+            font-size:16px;
+            border-radius: 10px;
+            font-weight:bold;
+        }
+        .chat-button:hover {
+            background-color: #a37800;
+        }
+        .image{
+            width: 70%;
+        margin-top: 20px;
+        border-radius: 10px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .page-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .tagline, .chat-button {
+                text-align: center;
+            }
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        
+
+    </style>
+
+</head>
+<body>    
+    <nav>
+        <div class="logo">
+            <img src="https://i.pinimg.com/474x/8e/67/c1/8e67c148f79f24c1ffa129e791730a24.jpg" alt="LawyerAI">
+            <span>LawyerAI</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href=#contact>Contact Us</a></li>
+        </ul>
+    </nav>
+    <!--Home -->
+    <h1 style="font-family:'Times New Roman'; font-size:60px; color:black; text-align:center; font-weight:bold; ">
+        Introducing LawyerAI ⚖️
+    </h1>
+
+    <!--Page Content-->
+    <div class="page-container">
+        <div class="tagline">
+            <p>📜 Know Your Rights.</p>
+            <p>🏛️ Seek Justice.</p>
+            <p>🎓 Stay Empowered.</p>
+        </div>
+
+        <img src="https://i.pinimg.com/736x/43/eb/98/43eb980e7ef9b7ab5aeec1da1d30f564.jpg" alt="LawyerAI loading ⟳" height="320px" width="570px" display="block" margin-left="auto">
+        
+        <div class="chat-button">
+            <a href="chatbot.html">Try LawyerAI ⭷</a>
+        </div>
+    </div>
+
+    <!-- Sections-->
+    <section id="overview">
+        <br>
+        <p style="font-size:20px;">LawyerAI is an AI-powered legal chatbot designed to assist users by analyzing their legal queries and providing relevant legal information, acts, and next steps.</p>
+        <p>It helps in spreading awareness of legal and human rights, especially for people who are unaware or not well-educated about Indian laws.</p>
+
+    </section>
+    <section id="about">
+        
+        <h2 style="padding-top: 100px;">📜 About Us</h2>
+        <ul style="font-size:15px; font-family:Arial, Helvetica, sans-serif;">
+            <li>LawyerAI is an AI-powered legal chatbot designed to help individuals understand their legal rights and navigate the Indian legal system with ease.</li>
+            <br>
+            <li>Our mission is to make legal information accessible, easy to understand, and available to everyone, especially those who may not have prior legal knowledge.</li>
+            <br>
+            <br>
+            <li>We use cutting-edge AI and NLP (Natural Language Processing) to analyze user queries and provide relevant legal information, acts, and next steps.</li>
+            <br>
+            <li>Whether it's workplace rights, consumer disputes, or family law, LawyerAI guides users with legal awareness and assistance.</li>
+            <br>
+            <br>
+            <li>Our goal is to empower people with knowledge so they can make informed decisions about their rights and legal actions.</li>
+        </ul>
+    
+
+    </section>
+    <section id="contact">
+        <img src="https://t4.ftcdn.net/jpg/12/89/82/51/240_F_1289825106_uaYkqZUNfdR8Ti7c9RwChGzmWWynDKHn.jpg">
+        <h2 style="padding-top: 0px;">📞 Contact Us</h2>
+        <p style="font-size:15px; font-family:Arial, Helvetica, sans-serif;">Email: support@lawyerai.com
+        <p style="font-size:15px; font-family:Arial, Helvetica, sans-serif;"></pstyle>Phone: +91-XXXXXXXXXX</p>
+    </section>
+
+</body>
+</html>
