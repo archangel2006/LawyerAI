@@ -1,0 +1,185 @@
+/* ---------- Global Styles ---------- */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+  /* ---------- NAVBAR (Top Ribbon) ---------- */
+  .navbar {
+      position:fixed;
+      top: 0; 
+      left: 0; 
+      width: 100%;
+      z-index: 1000;
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #cb9c00;
+      padding: 20px 20px 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1)
+  }
+  .nav-left {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .logo{
+      display: flex;
+      align-items: center;
+      font-size: 30px;
+      margin-right:25px;
+      font-weight: bold;
+      font-family:'Times New Roman';
+  }
+  .logo img{height:60px;
+          margin-right:30px;
+          border-radius:8px;
+  }
+  /* ---------- LANGUAGE DROPDOWN ---------- */
+  .lang-dropdown {
+    position: fixed;
+    margin-left: 1100px;
+    margin-right: 10px;
+  }
+  .lang-btn {
+    background: whitesmoke;
+    color: #007bff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+  }
+  .lang-options {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: rgb(223, 212, 200);
+    min-width: 120px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+  .lang-options div {
+    padding: 10px;
+    cursor: pointer;
+  }
+  .lang-options div:hover {
+    background: #007bff;
+    color: white;
+  }
+  .lang-dropdown:hover .lang-options {
+    display: block;
+  }
+  /* ---------- SIDEBAR (Dashboard) ---------- */
+  .sidebar {
+    width: 250px;
+    background: #cb9c00;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 100px; /* below navbar */
+    bottom: 0;
+    left: -260px;
+    transition: 0.3s;
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 999;
+  }
+  .sidebar.show {
+    left: 0;
+  }
+  .sidebar button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    background: whitesmoke;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    text-align: left;
+    border-radius: 5px;
+  }
+  .sidebar button:hover {
+    background: #0056b3;
+  }
+  .sidebar .clear-history {
+    background: whitesmoke;
+  }
+  .chat-history {
+    margin-top: 20px;
+  }
+  .chat-history div {
+    padding: 10px;
+    background: #f1f1f1;
+    margin: 5px 0;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .chat-history div:hover {
+    background: #ddd;
+  }
+  /* ---------- CHAT CONTAINER ---------- */
+  .chat-container {
+    margin-top: 120px;
+    margin-left: 80px;
+    margin-right: 60px;
+    margin-bottom:20px;
+    width: 200px;
+    background: aliceblue;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex-grow: 1;
+  }
+  .chat-box {
+    padding: 10px;
+    height: calc(100vh - 60px - 70px);
+    overflow-y: auto;
+    border-bottom: 1px solid #ddd;
+  }
+  .message {
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    max-width: 75%;
+  }
+  .user-message {
+    background: #bbe8e1;
+    color: black;
+    align-self: flex-end;
+  }
+  .ai-message {
+    background: #c6c5c4;
+    color: black;
+    align-self: flex-start;
+  }
+  /* ---------- INPUT CONTAINER ---------- */
+  .input-container {
+    display: flex;
+    padding: 10px;
+    background: #f4e8c0;
+  }
+  .input-container input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+  }
+  .input-container button {
+    margin-left: 10px;
+    padding: 10px;
+    background: #5393d8;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  #mic-btn {
+    background: #a5e7b5;
+  }
