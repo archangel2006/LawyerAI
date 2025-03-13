@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from chatbot import get_chatbot_response  # Updated function name
+from Backend.chatbot import get_chatbot_response  # Updated function name
 
 app = Flask(__name__)
 CORS(app, resources={r"/chat": {"origins": "*"}})  # Allow all origins

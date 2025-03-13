@@ -1,3 +1,4 @@
+
 h2{font-family:'Times New Roman', Times, serif;
     font-size:40px;
     font-weight: bold;}
@@ -5,18 +6,18 @@ h2{font-family:'Times New Roman', Times, serif;
 body{padding-top: 60px;}
 
 
-nav{
-    position:fixed;
-    top: 0; 
-    left: 0; 
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     z-index: 1000;
-    display:flex;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     background: #cb9c00;
-    padding: 20px 20px 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1)
+    padding: 15px 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
 }
 
 .logo{
@@ -43,23 +44,33 @@ nav{
 .nav-links li{
     display:inline;
 }
-.nav-links a{
-    text-decoration:none;
-    color:aliceblue;
-    font-weight: thin;
-}
-.nav-links a:hover {
-    color: #4138ec;
+.nav-links a {
+    text-decoration: none;
+    color: aliceblue;
+    font-weight: bold;
+    padding: 10px 15px;
+    transition: all 0.3s ease-in-out;
 }
 
-.page-container{
-    display:flex;
-    align-items:center;
-    justify-content: space-between;
-    gap:15px;
-    padding:20px;
-    align-items: flex-start;
+.nav-links a:hover {
+    color: white;
+    background-color: black;
+    border-radius: 5px;
 }
+
+
+.page-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centers both elements */
+    gap: 40px; /* Increases spacing between text and image */
+    padding: 40px;
+    max-width: 1200px;
+    margin: auto;
+    text-align: left;
+}
+
+
 
 .tagline{
     font-family:'Times New Roman';
@@ -67,20 +78,21 @@ nav{
     font-size: 30px;
     color:black
 }
-.chat-button{
+.chat-button {
     text-align: right;
-    display:inline-block;
+    display: inline-block;
     padding: 12px 20px;
-    background-color:#cb9c00;
+    background-color: #cb9c00;
     color: aliceblue;
-    text-decoration:none;
-    font-size:16px;
+    text-decoration: none;
+    font-size: 16px;
     border-radius: 10px;
-    font-weight:bold;
+    font-weight: bold;
 }
 .chat-button:hover {
     background-color: #a37800;
 }
+
 .image{
     width: 70%;
 margin-top: 20px;

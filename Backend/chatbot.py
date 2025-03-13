@@ -1,32 +1,19 @@
-import os
-import google.generativeai as genai
-from dotenv import load_dotenv
+from llama_index import SimpleDirectoryReader, GPTVectorStoreIndex
 
-# Load environment variables from .env file
-load_dotenv()
+# Function to load the PDF and create an index
+def load_legal_documents():
+    reader = SimpleDirectoryReader(input_files=["./indian_constitution.pdf"])  # Update path if needed
+    docs = reader.load_data()
+    
+    # Create an index for querying the PDF
+    index = GPTVectorStoreIndex.from_documents(docs)
+    
+    return index.as_query_engine()
 
-# Get API key securely
-API_KEY = os.getenv("GEMINI_API_KEY")
-
-if not API_KEY:
-    raise ValueError("API key is missing. Please set GEMINI_API_KEY in the .env file.")
-
-genai.configure(api_key=API_KEY)
-
-# Initialize the chatbot model
-model = genai.GenerativeModel("gemini-1.0")
-chat = model.start_chat()
+# Initialize the chatbot engine
+query_engine = load_legal_documents()
 
 # Function to get chatbot response
 def get_chatbot_response(user_input):
-    response = chat.send_message(user_input)
-    return response.text
-
-# if you want to use the chatbot in standalone mode
-# if __name__ == "__main__":
-#     print("Welcome to LawyerAI Chatbot! Type 'exit' or 'quit' to stop.")
-#     while True:
-#         user_input = input("You: ")
-#         if user_input.lower() in ["exit", "quit"]:
-#             break
-#         print("LawyerAI:", get_chatbot_response(user_input))
+    response = query_engine.query(user_input)
+    return response.response if response else "I couldn't find a direct reference in the Constitution."
