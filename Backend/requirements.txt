@@ -1,5 +1,6 @@
 flask
 flask-cors
-llama-index==0.8.41
+llama-index
 PyMuPDF
 pypdf
+openai
