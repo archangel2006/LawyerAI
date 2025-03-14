@@ -1,6 +1,6 @@
 # 📜 LawyerAI Chatbot
 
-LawyerAI is an AI-powered legal chatbot that provides legal insights based on **Indian law**. It retrieves legal information from **PDFs** (e.g., Indian Constitution, IPC, CrPC) and uses **OpenAI's GPT** to provide easy-to-understand summaries.
+LawyerAI is an AI-powered legal chatbot that provides legal insights based on **Indian law**. It retrieves legal information from **PDFs** (e.g., Indian Constitution, Court Rulings and Government Acts) and uses **OpenAI's GPT** to provide easy-to-understand summaries.
 
 ## 🚀 Features
 - **Legal Search**: Finds relevant legal sections from uploaded **PDFs**.
