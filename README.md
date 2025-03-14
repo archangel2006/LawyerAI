@@ -21,7 +21,7 @@ LawyerAI is an AI-powered legal chatbot that provides legal insights based on **
 
 ### **Frontend**
 - **HTML, CSS, JavaScript** - User interface for chatbot
-- **Fetch API** - Sends user queries to backend
+- **Flask, Fetch API** - Sends user queries to backend
 
 ### **Database**
 - **FAISS Index** - Stores vector embeddings of legal text for fast retrieval
@@ -31,18 +31,13 @@ LawyerAI is an AI-powered legal chatbot that provides legal insights based on **
 ## 🔧 Installation & Setup
 
 ### **1️⃣ Install Dependencies**
-Run the following command in your **VS Code terminal**:
-```bash
 pip install flask pymupdf faiss-cpu sentence-transformers openai
-```
 
-### **2️⃣ Place Your Legal PDF**
-Copy your **PDF file** (e.g., `indian_constitution.pdf`) into the **same folder** as `chatbot.py`.
+### 2️⃣ Place Your Legal PDF
+Copy **PDF file** (e.g., `indian_constitution.pdf`) into the **same folder** as `chatbot.py`.
 
 ### **3️⃣ Run the Backend**
-```bash
 python chatbot.py
-```
 
 ### **4️⃣ Open the Chatbot Frontend**
 - Open `index.html` in **Google Chrome**.
@@ -64,9 +59,6 @@ python chatbot.py
 ### 🔴 **ModuleNotFoundError**
 👉 Run `pip install flask pymupdf faiss-cpu sentence-transformers openai` again.
 
-### 🔴 **OpenAI API Key Missing**
-👉 Replace `"YOUR_OPENAI_API_KEY"` in `chatbot.py` with your actual key.
-
 ### 🔴 **PDF Not Found**
 👉 Ensure your **PDF is in the same folder** as `chatbot.py` and update `pdf_path`.
 
@@ -74,7 +66,7 @@ python chatbot.py
 
 ## 🌟 Future Improvements
 - **Upload multiple PDFs dynamically**
-- **Voice-based legal queries**
+- **Smarter AI responses**
 - **Multilingual support for Indian languages**
 
 📌 Developed for **Indian legal awareness** ⚖️
