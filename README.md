@@ -1,4 +1,4 @@
-# ⚖️ LawyerAI — Making Law Simple for Everyone in India
+# ⚖️ LawyerAI — Making Law Simple 
 
 LawyerAI is an AI-powered legal assistant designed to make Indian laws understandable, accessible, and easy to navigate.  
 It simplifies complex legal text, retrieves relevant constitutional and statutory sections, and provides clear explanations based on Indian law.
