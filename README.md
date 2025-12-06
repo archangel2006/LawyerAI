@@ -1,74 +1,120 @@
-# 📜 LawyerAI Chatbot
+# ⚖️ LawyerAI — Making Law Simple for Everyone in India
 
-LawyerAI is an AI-powered legal chatbot that provides legal insights based on **Indian law**. It retrieves legal information from **PDFs** (e.g., Indian Constitution, Court Rulings and Government Acts) and uses **OpenAI's GPT** to provide easy-to-understand summaries.
+LawyerAI is an AI-powered legal assistant designed to make Indian laws understandable, accessible, and easy to navigate.  
+It simplifies complex legal text, retrieves relevant constitutional and statutory sections, and provides clear explanations based on Indian law.
 
-## 🚀 Features
-- **Legal Search**: Finds relevant legal sections from uploaded **PDFs**.
-- **AI-Powered Explanations**: Uses **OpenAI API** to summarize legal terms.
-- **Natural Language Processing (NLP)**: Smart searches beyond keyword matching.
-- **Fast Search**: Utilizes **FAISS** (Facebook AI Similarity Search) for quick results.
-- **User-Friendly Chat Interface**: Built with **HTML, JavaScript, and Flask**.
+---
+
+## 💫 Features
+
+1. **Semantic Legal Search** : Retrieves legally relevant sections from uploaded PDFs (such as the Constitution of India, acts, and rulings) using NLP-based semantic search rather than simple keyword matching.
+
+2. **AI-Powered Explanations** : Uses GPT/LlamaIndex to convert dense legal content into clear and simple terms.
+
+3. **Vector Search (FAISS)** : Semantic search powered by Sentence Transformers and FAISS for fast, contextual retrieval.
+
+4. **Lightweight Backend** : Flask-based backend with efficient PDF parsing, vector indexing, and response generation.
+
+5. **Clean Chat Interface** : HTML/CSS/JS frontend with:
+      - Chat history  
+      - Voice-to-text input  
+      - Multi-language support (English, Hindi, Marathi, Tamil, Bengali)  
+      - Responsive UI  
 
 ---
 
 ## 🛠️ Tech Stack
-### **Backend**
-- **Python (Flask)** - Web API for chatbot interactions
-- **FAISS** - Fast vector search for legal text
-- **Sentence-Transformers** - NLP-based semantic search
-- **PyMuPDF** - Extracts text from legal PDFs
-- **OpenAI API** - Provides AI-generated legal summaries (Optional)
 
-### **Frontend**
-- **HTML, CSS, JavaScript** - User interface for chatbot
-- **Flask, Fetch API** - Sends user queries to backend
+### Backend
+- Python (Flask)  
+- LlamaIndex / GPTVectorStoreIndex  
+- FAISS (semantic vector search)
+- Sentence-Transformers  
+- PyMuPDF (PDF extraction)
+- OpenAI API or LlamaIndex (AI explanations)
 
-### **Database**
-- **FAISS Index** - Stores vector embeddings of legal text for fast retrieval
+### Frontend
+- HTML  
+- CSS  
+- JavaScript (Fetch API)
+
+### Indexing / Storage
+- FAISS vector index  
+- PDF-based document store  
+
+---
+## 📁 Project Structure
+
+```
+.
+├── Backend
+│   ├── chatbot.py
+│   ├── indian_constitution.pdf
+│   ├── main.py
+│   └── requirements.txt
+│
+├── Frontend
+│   ├── Chat.html
+│   ├── ChatScript.js
+│   ├── ChatStyle.css
+│   ├── HomeStyle.css
+│   └── index.html
+│
+├── LICENSE
+└── README.md
+```
+---
+
+## 📦 Installation & Setup
+
+### 1. Install Dependencies
+```bash
+pip install requirements.txt
+```
+
+### 2. Add Legal PDFs
+Place your legal document(s) in the project folder, for example:
+```bash
+./indian_constitution.pdf
+```
+### 3. Run the Backend
+```
+python main.py
+```
+
+### 4. Run the Frontend
+
+```
+index.html
+```
 
 ---
 
-## 🔧 Installation & Setup
+# 🔍 How It Works
 
-### **1️⃣ Install Dependencies**
-pip install flask pymupdf faiss-cpu sentence-transformers openai
+1. **PDF Processing** : Text is extracted from the uploaded legal documents and divided into searchable chunks.
 
-### 2️⃣ Place Your Legal PDF
-Copy **PDF file** (e.g., `indian_constitution.pdf`) into the **same folder** as `chatbot.py`.
+2. Embedding Generation : Each chunk is converted into vector embeddings using Sentence Transformers.
 
-### **3️⃣ Run the Backend**
-python chatbot.py
+3. **FAISS Indexing** : Embeddings are stored in a FAISS index for fast, semantic retrieval.
 
-### **4️⃣ Open the Chatbot Frontend**
-- Open `index.html` in **Google Chrome**.
-- Ask legal questions and get AI-powered responses.
+4. **Query Handling** : When a user asks a question, the system retrieves the most relevant legal sections.
 
----
+5. **AI Summary Generation** : Retrieved text is summarized into clear and accessible explanations.
 
-## 📌 How It Works
-1. **PDF Processing**: Extracts text from the legal document.
-2. **Vector Search**: Converts text into embeddings and stores them in FAISS.
-3. **Query Processing**: When a user asks a question, the chatbot:
-   - Finds relevant legal sections from the **PDF**.
-   - Uses **OpenAI GPT** to summarize them.
-4. **Response Generation**: Returns a **simple legal explanation**.
+5. **Response Delivery** : The chat interface displays both the simplified explanation and the referenced legal sections.
 
 ---
 
 ## ⚠️ Troubleshooting
+
 ### 🔴 **ModuleNotFoundError**
-👉 Run `pip install flask pymupdf faiss-cpu sentence-transformers openai` again.
+Run `pip install flask pymupdf faiss-cpu sentence-transformers openai` again.
 
 ### 🔴 **PDF Not Found**
-👉 Ensure your **PDF is in the same folder** as `chatbot.py` and update `pdf_path`.
+Ensure your **PDF is in the same folder** as `chatbot.py` and update `pdf_path`.
 
 ---
 
-## 🌟 Future Improvements
-- **Upload multiple PDFs dynamically**
-- **Smarter AI responses**
-- **Multilingual support for Indian languages**
-
-📌 Developed for **Indian legal awareness** ⚖️
 
 
